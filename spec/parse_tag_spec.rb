@@ -1,9 +1,8 @@
 require_relative '../lib/parse_tag'
 
-describe '#parse_tag' do
+let (:tag_string) { "<p class='foo bar' id='baz' name='fozzie'>" }
 
-  let (:tag_string) { "<p class='foo bar' id='baz' name='fozzie'>" }
-  
+describe '#parse_tag' do
   it 'creates the tag type' do
     expect(parse_tag(tag_string).type).to eq("p")
   end
