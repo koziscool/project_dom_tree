@@ -1,7 +1,5 @@
-
 Tag = Struct.new( :type, :id, :classes, :name  )
-
-
+# class MyTag < Struct.new(:attributes, :go, :here)
 class ParseOpenTag
 
   def initialize( tag_string )
@@ -36,7 +34,3 @@ class ParseOpenTag
   end
 
 end
-
-
-
-

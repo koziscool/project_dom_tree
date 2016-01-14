@@ -1,12 +1,7 @@
+Tag = Struct.new( :type, :id, :classes, :name, :parent, :children, :depth )
 
-class TagInfo
-    def initialize( :options )
-        @type = options[type]
-        @id = options[id]
-        @classes = options[classes]
-        @name = options[name]
-        @text = ""
-        @children
+class TagInfo < Struct.new( :type, :id, :classes, :name, :parent, :children, :depth )
+    def initialize
     end
 
     def some_other_func
@@ -19,7 +14,10 @@ class TagInfo
 
     def tag_output
 
+    end
 
+    def run
+      
     end
 
 end
