@@ -13,23 +13,28 @@ end
 
 class ParseTag
 
+  TYPE_REGEX = /<(.*?)[ >]/
+  CLASS_REGEX = /class=['"](.*?)['"]/
+  ID_REGEX = /id=['"](.*?)['"]/
+  NAME_REGEX = /name=['"](.*?)['"]/
+
   def initialize
   end
 
   def parse_type( tag_string )
-    tag_string.match(/<(.*?)[ >]/) ? tag_string.match(/<(.*?)[ >]/)[1] : nil
+    tag_string.match(TYPE_REGEX) ? tag_string.match(TYPE_REGEX)[1] : nil
   end
 
   def parse_classes( tag_string )
-    tag_string.match(/class=['"](.*?)['"]/) ? tag_string.match(/class=['"](.*?)['"]/)[1].to_s : nil
+    tag_string.match(CLASS_REGEX) ? tag_string.match(CLASS_REGEX)[1].to_s : nil
   end
 
   def parse_id( tag_string )
-    tag_string.match(/id=['"](.*?)['"]/) ? tag_string.match(/id=['"](.*?)['"]/)[1].to_s : nil
+    tag_string.match(ID_REGEX) ? tag_string.match(ID_REGEX)[1].to_s : nil
   end
 
   def parse_name( tag_string )
-    tag_string.match(/name=['"](.*?)['"]/) ? tag_string.match(/name=['"](.*?)['"]/)[1].to_s : nil
+    tag_string.match(NAME_REGEX) ? tag_string.match(NAME_REGEX)[1].to_s : nil
   end
 
   def run( tag_string )

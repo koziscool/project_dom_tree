@@ -34,4 +34,8 @@ class DOMTree
         end
     end
 
+    def subtree( node, type = nil )
+
+
+    end
 end
