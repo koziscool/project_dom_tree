@@ -24,10 +24,10 @@ class DOMParser
   # end
 
   def convert_string(string)
-    tag_regex = /<.*>(.*?)<\/.*>/
+    tag_regex = /<.*>/
     greedy_tag_regex = /<.*>(.*)<\/.*>/
     greedy_tag_open_regex = /<.*>(.*)/
-    open_tag_regex = /<.*?>/
+    open_tag_regex = /<[^\/].*?>/
     close_tag_regex = /<\/.*?>/
 
 
@@ -35,18 +35,28 @@ class DOMParser
     while remaining_string != ""
       substring = string.match(greedy_tag_open_regex).post_match
 
-      match_obj = string.match(tag_regex)
+      open_match_obj = string.match(open_tag_regex)
+      close_match_obj = string.match(close_tag_regex)
 
-      pre_string = match_obj.pre_match
+      open_index = (open_tag_regex =~ string)
+      close_index = (close_tag_regex =~ string)
+
+      if open_index < close_index
+        first_match = open_match_obj
+      else
+        first_match = close_match_obj
+      end
+
+      pre_string = first_match.pre_match
       # add as text to last open tag
 
-      tag_string = match_obj.to_s
+      tag_string = first_match.to_s
       # parse tag
         # if open tag, create node, w attributes if available
         # if close tag, the close appropriate open tag
             # update TagInfo case
 
-      remaining_string = match_obj.post_match
+      remaining_string = first_match.post_match
 
     end
 
@@ -57,7 +67,7 @@ end
 
 
 d = DOMParser.new("test.html")
-d.convert_string(d.html_string)
+# d.convert_string(d.html_string)
 
 
 
