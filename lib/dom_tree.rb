@@ -35,7 +35,6 @@ class DOMTree
     end
 
     def subtree( node, type = nil )
-        node ||= @head
         subnodes_hash = Hash.new( 0 )
         unless node.nil?
             subnodes_hash[node.info.type] += 1
@@ -47,26 +46,33 @@ class DOMTree
                 end
             end
         end
+
         subnodes_hash
     end
 
-    # def search_tree( attribute, value )
-    #     node = @head
+    def search_tree( attribute, value )
+        search_subtree( @head, attribute, value )
+    end
 
+    def search_subtree( start_node, attribute, value )
+        return_nodes_array = []
+        unless start_node.nil?
+            case attribute
+            when :id
+                return_nodes_array << start_node if start_node.info.id == value
+            when :class
+                return_nodes_array << start_node if start_node.info.class.include? value
+            when :text
+                return_nodes_array << start_node if start_node.info.text == value
+            when :name
+                return_nodes_array << start_node if start_node.info.name == value
+            end
 
-    # end
-
-    # def search_subtree( start_node, attribute, value )
-    #     start_node ||= @head
-    #     unless start_node.nil?
-    #         start_node.children.each do | child_node | 
-    #             return_hash = subtree( child_node, type ) 
-    #             return_hash.each do | key, value |
-    #                 subnodes_hash[key] += return_hash[key]
-    #             end
-    #         end
-    #     end
-
-    # end
-
+            start_node.children.each do | child_node | 
+                return_nodes_array += search_subtree( child_node, attribute, value )
+            end
+        end
+        return_nodes_array
+    end
 end
+

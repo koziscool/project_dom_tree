@@ -68,12 +68,10 @@ class DOMParser
         text_tag = @tag_parser.handle_text( token )
         new_node = DOMTreeNode.new(text_tag, @tree.current_open_node, [],@tree.current_open_node.depth + 1, true) 
         @tree.add_child( @tree.current_open_node, new_node )
+
       end
-
     end
-
   end
-
 end
 
 d = DOMParser.new("test.html")
@@ -82,16 +80,12 @@ d.parse_token_array
 # print d.tree
 # d.tree.display_tree
 print d.tree.subtree( d.tree.head )
+puts
+# x = d.tree.search_subtree( d.tree.head, :id, "main-area"  )
+x = d.tree.search_subtree( d.tree.head, :text, "One header"  )
 
-
-
-
-
-
-
-
-
-
+puts x.length
+# x.each { |node| puts node }
 
 
 
