@@ -5,6 +5,7 @@ DOMTreeNode = Struct.new( :info, :parent, :children, :depth, :is_open )
 class DOMTree
 
     attr_accessor :head, :current_open_node
+    @@counter = 1
 
     def initialize
         @head = nil
@@ -21,6 +22,8 @@ class DOMTree
 
     def display_node( node )
         (node.depth - 1).times { print "  " }
+        print @@counter
+        @@counter += 1
         print node.info.print_info
         print "  depth: #{node.depth}"
         puts
@@ -35,7 +38,24 @@ class DOMTree
     end
 
     def subtree( node, type = nil )
+        node ||= @head
+        subnodes_hash = Hash.new( 0 )
+        unless node.nil?
+            subnodes_hash[node.info.type] += 1
+            subnodes_hash["total"] += 1
+            node.children.each do | child_node | 
+                return_hash = subtree( child_node, type ) 
+                return_hash.each do | key, value |
+                    subnodes_hash[key] += return_hash[key]
+                end
+            end
+        end
+        subnodes_hash
+    end
+
+    def search_tree()
 
 
     end
+
 end

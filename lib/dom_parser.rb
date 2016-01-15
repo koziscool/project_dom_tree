@@ -80,7 +80,8 @@ d = DOMParser.new("test.html")
 d.create_token_array
 d.parse_token_array
 # print d.tree
-d.tree.display_tree
+# d.tree.display_tree
+print d.tree.subtree( d.tree.head )
 
 
 
