@@ -3,6 +3,7 @@ require_relative '../lib/parse_tag'
 
 describe '#parse_tag' do
   let (:tag_string) { "<p class='foo bar' id='baz' name='fozzie'>" }
+  let (:other_string) { "<p id='baz' name='fozzie'>" }
 
   let( :parse_tag ) { ParseTag.new }
   
@@ -12,6 +13,10 @@ describe '#parse_tag' do
 
   it 'creates the tag classes' do
     expect(parse_tag.run(tag_string).classes).to eq(["foo", "bar"])
+  end
+
+  it 'creates empty array for classes' do
+    expect(parse_tag.run(other_string).classes).to eq([])
   end
 
   it 'creates the tag id' do

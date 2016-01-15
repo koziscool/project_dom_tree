@@ -26,7 +26,7 @@ class ParseTag
   end
 
   def parse_classes( tag_string )
-    tag_string.match(CLASS_REGEX) ? tag_string.match(CLASS_REGEX)[1].split(" ") : nil
+    tag_string.match(CLASS_REGEX) ? tag_string.match(CLASS_REGEX)[1].split(" ") : []
   end
 
   def parse_id( tag_string )
@@ -43,7 +43,7 @@ class ParseTag
   end
 
   def handle_text ( text )
-    TagInfo.new("text", nil, nil, nil, text )
+    TagInfo.new("text", nil, [], nil, text )
   end
 
 end

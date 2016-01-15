@@ -63,7 +63,7 @@ class DOMTree
             when :type
                 return_nodes_array << start_node if start_node.info.type == value
             when :class
-                return_nodes_array << start_node if start_node.info.class.include? value
+                return_nodes_array << start_node if start_node.info.classes.include? value
             when :text
                 return_nodes_array << start_node if start_node.info.text == value
             when :name
