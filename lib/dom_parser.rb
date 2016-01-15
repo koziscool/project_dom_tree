@@ -28,9 +28,6 @@ class DOMParser
   end
 end
 
-
-
-
 H_string = "I'm an inner div!!! I might just <em>emphasize</em> some text."
 
 H_string2 = "<h1>some stuff <em>djhfsdhf</em>sdjhfhjdssd<strong>sdjhfds</strong>  fjhksdjhdfskjhsd"
