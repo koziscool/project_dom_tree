@@ -82,7 +82,11 @@ d.parse_token_array
 print d.tree.subtree( d.tree.head )
 puts
 # x = d.tree.search_subtree( d.tree.head, :id, "main-area"  )
-x = d.tree.search_subtree( d.tree.head, :text, "One header"  )
+# x = d.tree.search_subtree( d.tree.head, :text, "One header"  )
+puts d.tree.search_subtree( d.tree.head, :class, "something"  ).length
+puts d.tree.search_subtree( d.tree.head, :class, "bold"  ).length
+puts d.tree.search_subtree( d.tree.head, :class, "funky"  ).length
+puts d.tree.search_subtree( d.tree.head, :class, "inner-div"  ).length
 
 puts x.length
 # x.each { |node| puts node }

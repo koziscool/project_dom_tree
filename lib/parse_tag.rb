@@ -26,7 +26,7 @@ class ParseTag
   end
 
   def parse_classes( tag_string )
-    tag_string.match(CLASS_REGEX) ? tag_string.match(CLASS_REGEX)[1].to_s : nil
+    tag_string.match(CLASS_REGEX) ? tag_string.match(CLASS_REGEX)[1].split(" ") : nil
   end
 
   def parse_id( tag_string )

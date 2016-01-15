@@ -60,6 +60,8 @@ class DOMTree
             case attribute
             when :id
                 return_nodes_array << start_node if start_node.info.id == value
+            when :type
+                return_nodes_array << start_node if start_node.info.type == value
             when :class
                 return_nodes_array << start_node if start_node.info.class.include? value
             when :text
