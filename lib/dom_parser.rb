@@ -42,16 +42,17 @@ class DOMParser
       
       #if open tag
         # create new Node and attack to Dom Tree
+        @tree.open_new_node(DOMTreeNode(nil, @tree.current_open_node, nil, @tree.current_open_node.depth + 1, true))
         # populate the info with functionality form tag_parser
         @tag_parser.run( tag_string )
 
       #else   # close tag
         # close the open tag in the dom tree
-        # reassing current open node of dom tree
+        @tree.close_node
       #end
 
       remaining_string = first_match.post_match
-
+      # save text as its own node to avoid rendering problem
     end
 
   end

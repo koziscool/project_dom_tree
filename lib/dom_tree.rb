@@ -11,11 +11,18 @@ class DOMTree
     end
 
     def get_children
-
+        
     end
 
-    def add_text_to_open_node new_text
-        # @open_node.info.text = new_text
+    def add_text_to_open_node(new_text)
+        @current_open_node.info.text << new_text
     end
 
+    def open_new_node(node)
+        @current_open_node = node
+    end
+
+    def close_node
+        @current_open_node = @current_open_node.parent
+    end
 end
