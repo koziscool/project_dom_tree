@@ -2,7 +2,11 @@
 TagInfo = Struct.new( :type, :id, :classes, :name, :text ) do
 
   def print_info
-    print "type: #{type} id: #{id} classes: #{classes} name: #{name} text: #{text}"
+    print "type: #{type}" if type
+    print " id: #{id}" if id 
+    print " classes: #{classes}" if classes
+    print " name: #{name}" if name
+    print " text: #{text}" if text
   end
 end
 

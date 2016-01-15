@@ -20,8 +20,9 @@ class DOMTree
     end
 
     def display_node( node )
-        node.depth.times { print "  " }
+        (node.depth - 1).times { print "  " }
         print node.info.print_info
+        print "  depth: #{node.depth}"
         puts
     end
 
