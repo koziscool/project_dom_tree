@@ -8,6 +8,21 @@ TagInfo = Struct.new( :type, :id, :classes, :name, :text ) do
     print " name: #{name}" if name
     print " text: #{text}" if text
   end
+
+  def build_tag
+    if type != "text"
+      type ? type_string = "#{type} " : type_string = ""
+      classes != [] ? class_string = "class='#{classes.join(" ")}' " : class_string = ""
+      id ? id_string = "id='#{id}' " : id_string = ""
+      name ? name_string = "name='#{name}' " :  name_string = ""
+      ret_string =  "<" + type_string + class_string + id_string +
+        name_string
+      ret_string = ret_string[0..-2] + ">"
+    else
+      ret_string = text
+    end
+    ret_string
+  end
 end
 
 

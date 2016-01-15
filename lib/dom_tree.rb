@@ -50,6 +50,22 @@ class DOMTree
         subnodes_hash
     end
 
+    def attribute_match?(node, attribute, value)
+        case attribute
+        when :id
+            node.info.id == value ? true : false
+        when :type
+            node.info.type == value ? true : false
+        when :class
+            node.info.classes.include? value ? true : false
+        when :text
+            node.info.text == value ? true : false
+        when :name
+            node.info.name == value ? true : false
+        end
+    end
+
+
     def search_tree( attribute, value )
         search_subtree( @head, attribute, value )
     end
@@ -57,6 +73,7 @@ class DOMTree
     def search_subtree( start_node, attribute, value )
         return_nodes_array = []
         unless start_node.nil?
+
             case attribute
             when :id
                 return_nodes_array << start_node if start_node.info.id == value
@@ -76,5 +93,33 @@ class DOMTree
         end
         return_nodes_array
     end
+
+    def search_ancestors( start_node, attribute, value )
+        return_nodes_array = []
+        unless start_node.nil?
+
+            case attribute
+            when :id
+                return_nodes_array << start_node if start_node.info.id == value
+            when :type
+                return_nodes_array << start_node if start_node.info.type == value
+            when :class
+                return_nodes_array << start_node if start_node.info.classes.include? value
+            when :text
+                return_nodes_array << start_node if start_node.info.text == value
+            when :name
+                return_nodes_array << start_node if start_node.info.name == value
+            end
+
+
+            return_nodes_array += search_ancestors( start_node.parent, attribute, value )
+        end
+        return_nodes_array
+    end
+
+    def rebuild_html
+        
+    end
+
 end
 
