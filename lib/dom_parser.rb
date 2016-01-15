@@ -8,7 +8,7 @@ class DOMParser
   close_tag_regex = /<\/.*?>/
 
   def initialize(file)
-    @line_array = file.readlines(file)
+    @line_array = file.open(file)
   end
 
   def handle_line(line)
