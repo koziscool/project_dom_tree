@@ -18,9 +18,7 @@ update parse_tag class
 
 build tree structure
 
-
 ------------------
-
 
 -------------------------------
 Parse DOM/HTML file pseducode
