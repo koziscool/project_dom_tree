@@ -1,10 +1,11 @@
-Tag = Struct.new( :type, :id, :classes, :name  )
+
+TagInfo = Struct.new( :type, :id, :classes, :name, :text )
+
 # class MyTag < Struct.new(:attributes, :go, :here)
+
 class ParseTag
 
-  def initialize( tag_string )
-    @tag_string = tag_string
-    run
+  def initialize
   end
 
   def parse_type( tag_string )
@@ -29,7 +30,7 @@ class ParseTag
   end
 
   def run( tag_string )
-    tag = Tag.new(parse_type(tag_string), parse_id(tag_string), parse_classes(tag_string), parse_name(tag_string))
+    tag = Tag.new(parse_type(tag_string), parse_id(tag_string), parse_classes(tag_string), parse_name(tag_string), parse_text(tag_string))
     tag
   end
 

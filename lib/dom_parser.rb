@@ -1,27 +1,15 @@
 require_relative 'tag_info.rb'
+require_relative 'dom_tree.rb'
+
 
 class DOMParser
   attr_reader :html_string
 
   def initialize(file)
     @html_string = File.read(file)[16..-1]
+    @tree = DomTree.new
+    @tag_parser = ParseTag.new
   end
-
-  # def handle_line(line)
-  #   tag_regex = /<.*>(.*?)<\/.*>/
-  #   open_tag_regex = /<.*?>/
-  #   close_tag_regex = /<\/.*?>/
-
-  #   string1 = line.match(open_tag_regex).pre_match
-  #   open_subtag = line.match(open_tag_regex)
-  #   between_subtags = line.match(tag_regex)[1]
-  #   closed_subtag = line.match(close_tag_regex)
-  #   string2 = line.match(close_tag_regex).post_match
-  # end
-
-  # def inspect_line(line)
-
-  # end
 
   def convert_string(string)
     tag_regex = /<.*>/
@@ -48,19 +36,23 @@ class DOMParser
       end
 
       pre_string = first_match.pre_match
-      # add as text to last open tag
+      @tree.add_text_to_open_node( pre_string )
 
       tag_string = first_match.to_s
-      # parse tag
-        # if open tag, create node, w attributes if available
-        # if close tag, the close appropriate open tag
-            # update TagInfo case
+      
+      #if open tag
+        # create new Node and attack to Dom Tree
+        # populate the info with functionality form tag_parser
+        @tag_parser.run( tag_string )
+
+      #else   # close tag
+        # close the open tag in the dom tree
+        # reassing current open node of dom tree
+      #end
 
       remaining_string = first_match.post_match
 
     end
-
-
 
   end
 end
