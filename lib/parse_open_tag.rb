@@ -1,6 +1,6 @@
 Tag = Struct.new( :type, :id, :classes, :name  )
 # class MyTag < Struct.new(:attributes, :go, :here)
-class ParseOpenTag
+class ParseTag
 
   def initialize( tag_string )
     @tag_string = tag_string

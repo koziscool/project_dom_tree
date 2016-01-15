@@ -5,6 +5,23 @@ Like leaves on the wind
 
 John and Kelsey
 
+-------------------
+
+Thu 4:30/6:30
+
+TTD
+
+do dom parser
+
+update parse_tag class
+    1. build regex to differentiate open tag from closing tag
+
+build tree structure
+
+
+------------------
+
+
 -------------------------------
 Parse DOM/HTML file pseducode
 ------------------------------
@@ -71,6 +88,6 @@ desired parsing behavior (wrt test.html)
 4. Add text to title node
 5. close title node
 6. close head node
-
+.....
 
 
