@@ -1,14 +1,10 @@
 require_relative 'tag_info.rb'
 
 class DOMParser
-  attr_reader :string
-
-  tag_regex = /<.*>(.*?)<\/.*>/
-  open_tag_regex = /<.*?>/
-  close_tag_regex = /<\/.*?>/
+  attr_reader :html_string
 
   def initialize(file)
-    @line_array = file.open(file)
+    @html_string = File.read(file)[16..-1]
   end
 
   def handle_line(line)
@@ -26,14 +22,25 @@ class DOMParser
   def inspect_line(line)
 
   end
+
+  def convert_string(string)
+    tag_regex = /<.*>(.*?)<\/.*>/
+    greedy_tag_regex = /<.*>(.*)<\/.*>/
+    greedy_tag_open_regex = /<.*>(.*)/
+    open_tag_regex = /<.*?>/
+    close_tag_regex = /<\/.*?>/
+
+    substring = string.match(greedy_tag_open_regex).post_match
+  end
 end
 
-H_string = "I'm an inner div!!! I might just <em>emphasize</em> some text."
+# H_string = "I'm an inner div!!! I might just <em>emphasize</em> some text."
 
-H_string2 = "<h1>some stuff <em>djhfsdhf</em>sdjhfhjdssd<strong>sdjhfds</strong>  fjhksdjhdfskjhsd"
+# H_string2 = "<h1>some stuff <em>djhfsdhf</em>sdjhfhjdssd<strong>sdjhfds</strong>  fjhksdjhdfskjhsd"
 
-d = DOMParser.new(H_string)
-d.handle_line(d.string)
+d = DOMParser.new("test.html")
+# puts d.html_string.inspect
+puts d.convert_string(d.html_string)
 
 
 

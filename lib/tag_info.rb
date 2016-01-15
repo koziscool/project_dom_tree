@@ -1,4 +1,4 @@
-Tag = Struct.new( :type, :id, :classes, :name, :parent, :children, :depth )
+# Tag = Struct.new( :type, :id, :classes, :name, :parent, :children, :depth )
 
 class TagInfo < Struct.new( :type, :id, :classes, :name, :parent, :children, :depth )
     def initialize
