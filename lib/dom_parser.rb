@@ -10,9 +10,7 @@ class DOMParser
   CLOSE_TAG_REGEX = /<\/.*?>/
 
   def initialize(file)
-    # @html_string = File.read(file)[16..-1]
     @html_string = File.readlines(file)[1..-1].map!(& :strip).join("")
-    # print @html_string
     @token_array = []
     @tree = DOMTree.new
     @tag_parser = ParseTag.new
@@ -74,23 +72,13 @@ class DOMParser
   end
 end
 
-d = DOMParser.new("test.html")
-d.create_token_array
-d.parse_token_array
-# print d.tree
-# d.tree.display_tree
-print d.tree.subtree( d.tree.head )
-puts
-# x = d.tree.search_subtree( d.tree.head, :id, "main-area"  )
-puts d.tree.search_subtree( d.tree.head, :text, "One header"  ).length
-puts d.tree.search_subtree( d.tree.head, :class, "something"  ).length
-puts d.tree.search_subtree( d.tree.head, :class, "bold"  ).length
-puts d.tree.search_subtree( d.tree.head, :class, "funky"  ).length
-puts d.tree.search_subtree( d.tree.head, :class, "inner-div"  ).length
-puts d.tree.search_tree(:class, "inner-div"  ).length
+# d = DOMParser.new("test.html")
+# puts d.html_string
+# d.create_token_array
+# d.parse_token_array
+# puts d.tree.rebuild_html
 
-puts x.length
-# x.each { |node| puts node }
+
 
 
 

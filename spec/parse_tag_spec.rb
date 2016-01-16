@@ -1,9 +1,10 @@
+
 require_relative '../lib/parse_tag'
 
 
 describe 'ParseTag and TagInfo' do
-  let (:tag_string) { "<p class='foo bar' id='baz' name='fozzie'>" }
-  let (:other_string) { "<p id='baz'>" }
+  let (:tag_string) { "<p class=\"foo bar\" id=\"baz\" name=\"fozzie\">" }
+  let (:other_string) { "<p id=\"baz\">" }
   let (:text_tag) { "This document contains data" }
 
   let( :parse_tag ) { ParseTag.new }

@@ -74,6 +74,8 @@ class DOMTree
         return_nodes_array = []
         unless start_node.nil?
 
+            # return_nodes_array << start_node if attribute_match?(start_node, attribute, value)
+
             case attribute
             when :id
                 return_nodes_array << start_node if start_node.info.id == value
@@ -111,14 +113,26 @@ class DOMTree
                 return_nodes_array << start_node if start_node.info.name == value
             end
 
-
             return_nodes_array += search_ancestors( start_node.parent, attribute, value )
         end
         return_nodes_array
     end
 
-    def rebuild_html
-        
+    def rebuild_html(start_node = nil)
+        start_node ||= @head
+        ret_string = ""
+        unless start_node.nil?
+            ret_string += start_node.info.build_tag
+            children_index = 0
+            while !start_node.children[children_index].nil?
+                ret_string += rebuild_html( start_node.children[children_index] )
+                children_index += 1
+            end
+            if start_node.info.type != "text"
+                ret_string += "</" + start_node.info.type + ">"
+            end
+        end
+        ret_string
     end
 
 end
